@@ -11,7 +11,7 @@ VisionCLI provides a simple and fast interface for performing essential computer
 **What VisionCLI is:** A simple, headless student project designed to demonstrate core computer vision processes without complex graphical user interfaces.
 **Why it exists:** To provide an easy-to-use, robust example of parsing terminal commands and wiring them up to Python's powerful OpenCV module.
 **How you interact with it:** Users invoke the `main.py` Python script via standard terminal environments, passing an input image along with the desired operation flag.
-**What it produces:** Processed `.jpg` or `.png` images strictly piped to an output directory, natively skipping GUI window popups.
+**What it produces:** Processed images are saved in the output/ directory.
 
 ---
 
@@ -173,7 +173,7 @@ python main.py --image samples/sample.jpg --operation edges
 ```
 
 **Face Detection** 
-Predicts bounding rects. Saved to `output/`.
+Detects faces and draws bounding boxes around detected faces. Saved to `output/`.
 ```bash
 python main.py --image samples/sample.jpg --operation faces
 ```
@@ -251,7 +251,7 @@ VisionCLI/
 ## Error Handling
 
 Validation is implemented upstream natively in Python:
-* **Missing Image:** Checks file path existence natively before importing `cv2` and halts softly if it does not exist.
+* **Missing Image:** Checks whether the supplied image path exists before attempting to process the image.
 * **Invalid Image Data:** Validates `cv2.imread()` arrays to verify structural pixel integrity.
 * **Invalid Operation:** Denied preemptively by parsing strict `argparse` choices natively before instantiation.
 * **Resize Argument Errors:** Custom checks halt script execution correctly if exactly `--width` and `--height` integers aren't paired contextually with `--operation resize`.
